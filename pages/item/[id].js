@@ -39,7 +39,7 @@ export default ReadSigleItem
 
 export const getServerSideProps = async (context) => {
   const response = await fetch(
-    `http://localhost:3000/api/item/${context.query.id}`
+    `https://nextjs-jz9zzr36c-garinpeiros.vercel.app/api/item/${context.query.id}`
   )
 
   const singleItem = await response.json()

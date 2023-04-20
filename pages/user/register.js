@@ -22,14 +22,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch("http://localhost:3000/api/user/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      })
+      const response = await fetch(
+        "https://nextjs-jz9zzr36c-garinpeiros.vercel.app/api/user/register",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      )
       const jsonData = await response.json()
       alert(jsonData.message)
     } catch (err) {
