@@ -1,7 +1,4 @@
 import { useState } from "react"
-import Head from "next/head"
-import Header from "../components/header.js"
-import Fotter from "../components/fotter.js"
 
 const Register = () => {
   /*
