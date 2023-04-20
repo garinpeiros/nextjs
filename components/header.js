@@ -3,13 +3,6 @@ import Image from "next/image"
 const Header = () => {
   return (
     <header>
-      <div>
-        <Link href="/">
-          <a>
-            <img src="/header.svg" alt="header-img" layout="fill" />
-          </a>
-        </Link>
-      </div>
       <nav>
         <ul>
           <li>
