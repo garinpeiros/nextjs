@@ -1,9 +1,28 @@
+import type { NextApiRequest, NextApiResponse } from "next"
 import jwt from "jsonwebtoken"
 
 const secret_key = "nextmarket"
 
-const auth = (handler) => {
-  return async (req, res) => {
+interface DecodeType {
+  email: string
+}
+
+
+interface ExtendedNextApiRequestAuth extends NextApiRequest {
+  headers: {
+    authorization: string
+  }
+  body: {
+    email: string
+  }
+}
+
+interface ResMessageType {
+  message: string
+}
+
+const auth = (handler : Function) => {
+  return async (req: ExtendedNextApiRequestAuth, res: NextApiResponse<ResMessageType>) => {
     if (req.method === "GET") {
       return handler(req, res)
     }
@@ -16,7 +35,7 @@ const auth = (handler) => {
 
     try {
       const decoded = jwt.verify(token, secret_key)
-      req.body.email = decoded.email
+      req.body.email = (decoded as DecodeType).email
       return handler(req, res)
     } catch (err) {
       return res
