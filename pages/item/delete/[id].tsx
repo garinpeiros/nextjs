@@ -1,9 +1,11 @@
 import Image from "next/image"
 import useAuth from "../../../utils/useAuth"
 import Head from "next/head"
+import { GetServerSideProps, NextPage } from "next"
+import { ReadSingleDataType } from "../../../utils/types"
 
-const DeleteItem = (props) => {
-  const handleSubmit = async (e) => {
+const DeleteItem: NextPage<ReadSingleDataType> = (props) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //追加
     try {
@@ -32,7 +34,7 @@ const DeleteItem = (props) => {
     return (
       <div className="delete-page">
         <Head>
-          <tite>アイテム削除</tite>
+          <title>アイテム削除</title>
         </Head>
         <h1 className="page-title">アイテム削除</h1>
         <form onSubmit={handleSubmit}>
@@ -56,7 +58,7 @@ const DeleteItem = (props) => {
 
 export default DeleteItem
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<ReadSingleDataType> = async (context) => {
   const response = await fetch(
     `http://localhost:3000/api/item/${context.query.id}`
   )

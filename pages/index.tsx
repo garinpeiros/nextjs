@@ -1,8 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
 import Head from "next/head"
+import { ReadAllDataType } from "../utils/types"
+import { GetServerSideProps, NextPage } from "next"
 
-const ReadAllItems = (props) => {
+const ReadAllItems: NextPage<ReadAllDataType> = (props) => {
   return (
     <div>
       <Head>
@@ -30,7 +32,7 @@ const ReadAllItems = (props) => {
 }
 export default ReadAllItems
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<ReadAllDataType> = async () => {
   const response = await fetch("http://localhost:3000/api/item/readall")
   const allItems = await response.json()
   return {

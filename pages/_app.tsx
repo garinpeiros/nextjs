@@ -1,9 +1,10 @@
 import "../styles/globals.css"
 
-import Header from "../components/header.js"
-import Fotter from "../components/fotter.js"
+import Header from "../components/header"
+import Fotter from "../components/footer"
+import { AppProps } from "next/app"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="container">
       <Header />

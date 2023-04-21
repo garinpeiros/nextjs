@@ -1,31 +1,34 @@
 import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
+import type { GetServerSideProps, NextPage } from "next"
+import { ReadSingleDataType, ResReadSingleType } from "../../utils/types"
 
-const ReadSigleItem = (props) => {
+const ReadSigleItem: NextPage<ResReadSingleType> = (props) => {
+  
   return (
     <div className="grid-container-si">
       <Head>
-        <title>{props.singleItem.title}</title>
+        <title>{props.singleItem?.title}</title>
       </Head>
       <div>
         <Image
-          src={props.singleItem.image}
+          src={props.singleItem?.image || ""}
           width="750px"
           height="500px"
           alt="item-image"
         />
         <div>
-          <h1>{props.singleItem.title}</h1>
-          <h1>¥{props.singleItem.price}</h1>
+          <h1>{props.singleItem?.title}</h1>
+          <h1>¥{props.singleItem?.price}</h1>
           <hr />
-          <p>{props.singleItem.description}</p>
+          <p>{props.singleItem?.description}</p>
           <div>
-            <Link href={`/item/update/${props.singleItem._id}`}>
+            <Link href={`/item/update/${props.singleItem?._id}`}>
               <a>アイテム編集</a>
             </Link>
 
-            <Link href={`/item/delete/${props.singleItem._id}`}>
+            <Link href={`/item/delete/${props.singleItem?._id}`}>
               <a>アイテム削除</a>
             </Link>
           </div>
@@ -37,7 +40,7 @@ const ReadSigleItem = (props) => {
 
 export default ReadSigleItem
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<ReadSingleDataType> = async (context) => {
   const response = await fetch(
     `http://localhost:3000/api/item/${context.query.id}`
   )

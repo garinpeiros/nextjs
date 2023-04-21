@@ -1,13 +1,16 @@
 import { useState } from "react"
 import useAuth from "../../../utils/useAuth"
+import { ReadSingleDataType } from "../../../utils/types"
+import type { NextPage, GetServerSideProps} from "next"
 
-const UpdateItem = (props) => {
+
+const UpdateItem: NextPage<ReadSingleDataType> = (props) => {
   const [title, setTitle] = useState(props.singleItem.title)
   const [price, setPrice] = useState(props.singleItem.price)
   const [image, setImage] = useState(props.singleItem.image)
   const [description, setDescription] = useState(props.singleItem.description)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //追加
     try {
@@ -84,7 +87,7 @@ const UpdateItem = (props) => {
 
 export default UpdateItem
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await fetch(
     `http://localhost:3000/api/item/${context.query.id}`
   )

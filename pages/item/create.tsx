@@ -1,15 +1,16 @@
 import { useState } from "react"
 import useAuth from "../../utils/useAuth"
 import Head from "next/head"
+import type { NextPage } from "next"
 
-const CreateItem = () => {
+const CreateItem: NextPage = () => {
   //追加
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //追加
     try {
@@ -81,6 +82,8 @@ const CreateItem = () => {
         </form>
       </div>
     )
+  } else {
+    return <h1>ログインして下さい</h1>
   }
 }
 

@@ -12,14 +12,14 @@ const Register = () => {
     password: "",
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setNewUser({
       ...newUser,
       [e.target.name]: e.target.value,
     })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       const response = await fetch("http://localhost:3000/api/user/register", {

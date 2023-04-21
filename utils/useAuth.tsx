@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import jwt from "jsonwebtoken"
+import { DecodeType } from "./types"
 
 const secret_key = "nextmarket"
 
@@ -17,8 +18,8 @@ const useAuth = () => {
     }
 
     try {
-      const decoded = jwt.verify(token, secret_key)
-      setLoginUser(decoded.email)
+      const decoded = jwt.verify(token!, secret_key)
+      setLoginUser((decoded as DecodeType).email)
     } catch (error) {
       router.push("/user/login")
     }
